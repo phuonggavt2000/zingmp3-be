@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 require("dotenv").config();
 import connection from "./src/config/connect_database";
+import zingmp3 from "./src/routes/zingmp3";
+import initRoutes from "./src/routes";
 
 const app = express();
 app.use(
@@ -14,9 +16,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", (req, res) => {
-    return res.send("SERVER ON");
-});
+initRoutes(app);
 connection();
 
 const port = process.env.PORT || 8888;
